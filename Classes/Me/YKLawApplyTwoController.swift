@@ -30,7 +30,9 @@ class YKLawApplyTwoController: YKBaseTableViewController,YKSelectedDelegate {
         oneArray.removeFirst()
         var twoArray = cellArray[1]
         twoArray.removeFirst()
+        YKProgressHUD.showHUD("", inView: self.view)
         YKHttpClient.shared.lawAssistTwo(self.assist_id, crowd_cate: oneArray, assist_cate: twoArray) { (id, error) in
+            YKProgressHUD.hide(false)
             if let id = id {
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "LawApplyThreeID") as! YKLawApplyThreeController
                 vc.title = "法律援助(3)"

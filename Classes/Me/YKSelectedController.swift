@@ -44,7 +44,7 @@ class YKSelectedController: YKBaseTableViewController {
     /// 多选完成
     func okClick() {
         if selectedArray.count == 0 {
-            YKProgressHUD.popupError("还未选中任何选项")
+            YKProgressHUD.showError("还未选中任何选项")
             return
         }
         self.delegate?.chooseSuccess(selectedArray, index: index)

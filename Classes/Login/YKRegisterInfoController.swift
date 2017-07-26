@@ -136,11 +136,11 @@ class YKRegisterInfoController: YKPhotoTableViewController,MLLinkLabelDelegate,U
     
     @IBAction func sendCode(_ sender: UIButton) {
         if phoneTextField.text?.characters.count == 0 {
-            YKProgressHUD.popupError("请先填写手机号")
+            YKProgressHUD.showError("请先填写手机号")
             return
         }
         if !isTelNumber(phoneTextField.text! as NSString) {
-            YKProgressHUD.popupError("请输入正确的手机号")
+            YKProgressHUD.showError("请输入正确的手机号")
             return
         }
         
@@ -164,7 +164,7 @@ class YKRegisterInfoController: YKPhotoTableViewController,MLLinkLabelDelegate,U
     @IBAction func sendBtnClick(_ sender: UIButton) {
         hideKeyBoard()
         if psdTextField.text != sureTextField.text {
-            YKProgressHUD.popupError("两次输入的密码不一致")
+            YKProgressHUD.showError("两次输入的密码不一致")
             return
         }
         if let mobile = phoneTextField.text, let code = codeTextField.text, let password = psdTextField.text, let sure = sureTextField.text {
@@ -179,7 +179,7 @@ class YKRegisterInfoController: YKPhotoTableViewController,MLLinkLabelDelegate,U
                             }
                         })
                     } else {
-                        YKProgressHUD.popupSuccess("提交成功，等待管理员审核...")
+                        YKProgressHUD.showSuccess("提交成功，等待管理员审核...")
                         let time: TimeInterval = kDelayTime_Of_HUD
                         let delay = DispatchTime.now() + Double(Int64(time * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
                         DispatchQueue.main.asyncAfter(deadline: delay) {

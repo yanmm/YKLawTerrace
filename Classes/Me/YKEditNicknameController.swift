@@ -55,7 +55,7 @@ class YKEditNicknameController: YKBaseViewController {
             YKHttpClient.shared.updateUser(nickname, avatar: nil, completionHandler: { (error) in
                 if error == nil {
                     YKUser.shared.nickname = nickname
-                    YKProgressHUD.popupSuccess("修改成功")
+                    YKProgressHUD.showSuccess("修改成功")
                     let time: TimeInterval = kDelayTime_Of_HUD
                     let delay = DispatchTime.now() + Double(Int64(time * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
                     DispatchQueue.main.asyncAfter(deadline: delay) {

@@ -84,15 +84,15 @@ class YKPasswordController: YKBaseTableViewController {
     }
     
     @IBAction func sendCode(_ sender: UIButton) {
+        hideKeyBoard()
         if phoneTextField.text?.characters.count == 0 {
-            YKProgressHUD.popupError("请先填写手机号")
+            YKProgressHUD.showError("请先填写手机号")
             return
         }
         if !isTelNumber(phoneTextField.text! as NSString) {
-            YKProgressHUD.popupError("请输入正确的手机号")
+            YKProgressHUD.showError("请输入正确的手机号")
             return
         }
-        
         YKHttpClient.shared.verifyCode(phoneTextField.text!, type: 2) { (error) in
             if error == nil {
                 self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.timeRun), userInfo: nil, repeats: true)
@@ -101,7 +101,7 @@ class YKPasswordController: YKBaseTableViewController {
                 
                 self.codeBtn.titleLabel?.text = "\(self.sec)" + "s"
                 self.codeBtn.setTitle("\(self.sec)" + "s", for: UIControlState())
-                self.codeBtn.backgroundColor = UIColor(hex6: 0xE3E3E3)
+                self.codeBtn.setTitleColor(UIColor(hex6: 0x999999), for: UIControlState())
             } else {
                 self.showAlert(error: error)
             }
@@ -109,14 +109,15 @@ class YKPasswordController: YKBaseTableViewController {
     }
     
     @IBAction func sendBtnClick(_ sender: UIButton) {
+        hideKeyBoard()
         if psdTextField.text != sureTextField.text {
-            YKProgressHUD.popupError("两次输入的密码不一致")
+            YKProgressHUD.showError("两次输入的密码不一致")
             return
         }
         if let mobile = phoneTextField.text, let code = codeTextField.text, let password = psdTextField.text, let sure = sureTextField.text {
             YKHttpClient.shared.forgotPwd(mobile, verifyCode: code, password: password, confPassword: sure, completionHandler: { (error) in
                 if error == nil {
-                    YKProgressHUD.popupSuccess("修改成功")
+                    YKProgressHUD.showSuccess("修改成功")
                     let delay = DispatchTime.now() + Double(Int64(1.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
                     DispatchQueue.main.asyncAfter(deadline: delay) {
                         self.navigationController?.popViewController(animated: true)

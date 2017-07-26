@@ -57,15 +57,17 @@ class YKNotaryApplyOneController: YKBaseTableViewController,UIGestureRecognizerD
     /// 下一步
     @IBAction func nextBtnClick(_ sender: UIButton) {
         hideKeyBoard()
-//        if !isTelNumber(applyMobileTextField.text!) {
-//            YKProgressHUD.popupError("请输入正确的手机号")
+//        if !isTelNumber(applyMobileTextField.text! as NSString) {
+//            YKProgressHUD.showError("请输入正确的手机号")
 //            return
 //        }
-//        if !isIdentityCard(applyCardTextField.text!) {
-//            YKProgressHUD.popupError("身份证格式错误")
+//        if !isIdentityCard(applyCardTextField.text! as NSString) {
+//            YKProgressHUD.showError("身份证格式错误")
 //            return
 //        }
+        YKProgressHUD.showHUD("", inView: self.view)
         YKHttpClient.shared.notaryApplyOne(applyNameTextField.text, apply_gender: applySexLabel.text, apply_birthday: applyBrithdayLabel.text, apply_IDcard_no: applyCardTextField.text, apply_workunit: applyAddressTextField.text, apply_cellphone: applyMobileTextField.text, agent_name: delegateNameTextField.text, agent_workunit: delegateAddressTextField.text, agent_IDcard_no: delegateCardTextField.text, apply_relations: delegateRelationTextField.text, agent_cellphone: delegateMobileTextField.text, completionHandler: { (notary_id, error) in
+            YKProgressHUD.hide(false)
             if let notary_id = notary_id {
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "NotaryApplyTwoID") as! YKNotaryApplyTwoController
                 vc.title = "公证办理(2)"
@@ -92,6 +94,11 @@ class YKNotaryApplyOneController: YKBaseTableViewController,UIGestureRecognizerD
         datePicker.datePickerMode = UIDatePickerMode.date
         // 设置默认时间
         datePicker.date = Date()
+        // 设置时间限制
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = "yyyy-MM-dd"
+        datePicker.minimumDate = timeFormatter.date(from: "1900-01-01")
+        datePicker.maximumDate = NSDate() as Date
         alertController.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.default){
             (alertAction)->Void in
             let timeFormatter = DateFormatter()

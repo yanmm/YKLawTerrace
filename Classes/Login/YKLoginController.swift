@@ -43,15 +43,15 @@ class YKLoginController: YKBaseTableViewController {
     @IBAction func login(_ sender: UIButton) {
         endEditing()
         if phoneTextField.text?.characters.count == 0 {
-            YKProgressHUD.popupError("请输入帐号")
+            YKProgressHUD.showError("请输入帐号")
             return
         }
         if !isTelNumber(phoneTextField.text! as NSString) {
-            YKProgressHUD.popupError("请输入正确的手机号")
+            YKProgressHUD.showError("请输入正确的手机号")
             return
         }
         if psdTextField.text?.characters.count == 0 {
-            YKProgressHUD.popupError("请输入密码")
+            YKProgressHUD.showError("请输入密码")
             return
         }
         YKHttpClient.shared.login(phoneTextField.text!, password: psdTextField.text!) { (error) in

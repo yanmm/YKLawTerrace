@@ -42,13 +42,15 @@ class YKLawApplyFiveController: YKBaseTableViewController,YKSelectedDelegate,UIG
     @IBAction func nextBtnClick(_ sender: UIButton) {
         hideKeyBoard()
         if contextTextView.text.characters.count == 0 {
-            YKProgressHUD.popupError("请输入申请法律援助的案情及理由概述")
+            YKProgressHUD.showError("请输入申请法律援助的案情及理由概述")
             return
         }
         if let economic_amount = moneyTextField.text, let build_size = houseTextField.text, let build_use_state = useLabel.text, let case_intro = contextTextView.text {
+            YKProgressHUD.showHUD("", inView: self.view)
             YKHttpClient.shared.lawAssistFive(self.assist_id, economic_amount: economic_amount, build_size: build_size, build_use_state: build_use_state, case_intro: case_intro, completionHandler: { (error) in
+                YKProgressHUD.hide(false)
                 if error == nil {
-                    YKProgressHUD.popupSuccess("申请成功")
+                    YKProgressHUD.showSuccess("申请成功")
                     let time: TimeInterval = kDelayTime_Of_HUD
                     let delay = DispatchTime.now() + Double(Int64(time * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
                     DispatchQueue.main.asyncAfter(deadline: delay) {

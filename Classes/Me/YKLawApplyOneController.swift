@@ -82,15 +82,17 @@ class YKLawApplyOneController: YKBaseTableViewController,YKSelectedDelegate {
     @IBAction func nextBtnClick(_ sender: UIButton) {
         hideKeyBoard()
         if !isTelNumber(applyMobileTextField.text! as NSString) {
-            YKProgressHUD.popupError("请输入正确的手机号")
+            YKProgressHUD.showError("请输入正确的手机号")
             return
         }
         if !isIdentityCard(applyCardTextField.text! as NSString) {
-            YKProgressHUD.popupError("身份证格式错误")
+            YKProgressHUD.showError("身份证格式错误")
             return
         }
         if let applicant = applyNameTextField.text, let gender = applySexLabel.text, let birthday = applyBrithdayLabel.text, let nation = nationTextField.text, let IDcard_no = applyCardTextField.text, let domicile_place = applyAddressTextField.text, let cellphone = applyMobileTextField.text, let workunit = workPlaceTextField.text, let home_place = homeTextField.text, let postcode = postcodeTextField.text, let edu_level = eduLabel.text, let physical_state = bodyLabel.text {
+            YKProgressHUD.showHUD("", inView: self.view)
             YKHttpClient.shared.lawAssistOne(applicant, gender: gender, birthday: birthday, nation: nation, legal_person: self.legalTextField.text, IDcard_no: IDcard_no, domicile_place: domicile_place, cellphone: cellphone, workunit: workunit, home_place: home_place, postcode: postcode, edu_level: edu_level, physical_state: physical_state, completionHandler: { (assist_id, error) in
+                YKProgressHUD.hide(false)
                 if let assist_id = assist_id {
                     let vc = self.storyboard?.instantiateViewController(withIdentifier: "LawApplyTwoID") as! YKLawApplyTwoController
                     vc.title = "法律援助(2)"
@@ -118,6 +120,11 @@ class YKLawApplyOneController: YKBaseTableViewController,YKSelectedDelegate {
         datePicker.datePickerMode = UIDatePickerMode.date
         // 设置默认时间
         datePicker.date = Date()
+        // 设置时间限制
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = "yyyy-MM-dd"
+        datePicker.minimumDate = timeFormatter.date(from: "1900-01-01")
+        datePicker.maximumDate = NSDate() as Date
         alertController.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.default){
             (alertAction)->Void in
             let timeFormatter = DateFormatter()

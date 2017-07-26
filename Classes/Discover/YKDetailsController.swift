@@ -428,7 +428,7 @@ class YKDetailsController: YKBaseViewController,YKSelectedDelegate,UITableViewDe
     @IBAction func chooseCity(_ sender: UIButton) {
         let vc = UIStoryboard(name: "YKMe", bundle: nil).instantiateViewController(withIdentifier: "SelectedID") as! YKSelectedController
         vc.title = "选择区域"
-        vc.titleArray = ["右江区","田阳县","田东县","平果县","德保县","靖西县","那坡县","凌云县","乐业县","田林县","西林县","隆林各族自治县"]
+        vc.titleArray = ["右江区","田阳县","田东县","平果县","德保县","靖西市","那坡县","凌云县","乐业县","田林县","西林县","隆林各族自治县"]
         vc.delegate = self
         self.navigationController?.pushViewController(vc, animated: true)
     }

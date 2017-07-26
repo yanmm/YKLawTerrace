@@ -52,7 +52,9 @@ class YKLawApplyFourController: YKBaseTableViewController,YKSelectedDelegate,UIG
     @IBAction func nextBtnClick(_ sender: UIButton) {
         hideKeyBoard()
         if let get = getTextField.text, let save = saveTextField.text, let num = numTextField.text, let month = monthTextField.text, let base = baseTextField.text {
+            YKProgressHUD.showHUD("", inView: self.view)
             YKHttpClient.shared.lawAssistFour(self.assist_id, legalcase_state: cellArray[0][1], legalcase_mode: cellArray[1][1], profession_income: get, benefits: save, family_nums: num, average_income: month, basic_expense: base, completionHandler: { (id, error) in
+                YKProgressHUD.hide(false)
                 if let id = id {
                     let vc = self.storyboard?.instantiateViewController(withIdentifier: "LawApplyFiveID") as! YKLawApplyFiveController
                     vc.title = "法律援助(5)"

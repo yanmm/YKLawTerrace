@@ -27,7 +27,9 @@ class YKLawApplyThreeController: YKBaseTableViewController,YKSelectedDelegate {
     
     @IBAction func nextBtnClick(_ sender: UIButton) {
         if let legalcase_cate: String = cellArray[0][1], let legalcase_role: String = cellArray[1][1] {
+            YKProgressHUD.showHUD("", inView: self.view)
             YKHttpClient.shared.lawAssistThree(self.assist_id, legalcase_cate: legalcase_cate, legalcase_role: legalcase_role, completionHandler: { (id, error) in
+                YKProgressHUD.hide(false)
                 if let id = id {
                     let vc = self.storyboard?.instantiateViewController(withIdentifier: "LawApplyFourID") as! YKLawApplyFourController
                     vc.title = "法律援助(4)"
@@ -66,7 +68,7 @@ class YKLawApplyThreeController: YKBaseTableViewController,YKSelectedDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.row == 0 {
             if indexPath.section == 1 && cellArray[0].count == 1 {
-                YKProgressHUD.popupError("请先选择法律类型")
+                YKProgressHUD.showError("请先选择法律类型")
                 return
             }
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "SelectedID") as! YKSelectedController

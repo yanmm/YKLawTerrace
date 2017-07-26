@@ -68,17 +68,19 @@ class YKNotaryApplyThreeController: YKBaseTableViewController {
     @IBAction func nextBtnClick(_ sender: UIButton) {
         hideKeyBoard()
         if referTextView.text.characters.count == 0 {
-            YKProgressHUD.popupError("请输入供公证处参考的有关信息")
+            YKProgressHUD.showError("请输入供公证处参考的有关信息")
             return
         }
         if explainTetView.text.characters.count == 0 {
-            YKProgressHUD.popupError("请输入需要说明/声明的内容")
+            YKProgressHUD.showError("请输入需要说明/声明的内容")
             return
         }
         if let name = nameTextField.text, let address = addressTextField.text, let phone = phoneTextField.text {
+            YKProgressHUD.showHUD("", inView: self.view)
             YKHttpClient.shared.notaryApplyThree(self.notary_id, refer_translation: referTextView.text, explain_content: explainTetView.text, data: name + "-" + address + "-" + phone, completionHandler: { (error) in
+                YKProgressHUD.hide(false)
                 if error == nil {
-                    YKProgressHUD.popupSuccess("申请成功")
+                    YKProgressHUD.showSuccess("申请成功")
                     let time: TimeInterval = kDelayTime_Of_HUD
                     let delay = DispatchTime.now() + Double(Int64(time * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
                     DispatchQueue.main.asyncAfter(deadline: delay) {

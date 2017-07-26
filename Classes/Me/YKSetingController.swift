@@ -66,7 +66,7 @@ class YKSetingController: YKBaseTableViewController {
                 SDImageCache.shared().cleanDisk()
                 SDImageCache.shared().clearMemory()
                 Thread.sleep(forTimeInterval: 0.5)
-                YKProgressHUD.popupSuccess("清理成功")
+                YKProgressHUD.showSuccess("清理成功")
             })
             let action2 = UIAlertAction(title: NSLocalizedString("alert.cancel", comment: ""), style: UIAlertActionStyle.default, handler: nil)
             vc.addAction(action2)

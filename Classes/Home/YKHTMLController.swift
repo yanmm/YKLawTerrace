@@ -45,11 +45,11 @@ class YKHTMLController: YKBaseViewController,UIWebViewDelegate {
     }
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
-//        YKProgressHUD.hide(true)
+//        YKProgressHUD.hide(false)
     }
     
     func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
-//        YKProgressHUD.hide(true)
+//        YKProgressHUD.hide(false)
         self.view.addSubview(noDataView)
     }
 }

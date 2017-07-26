@@ -50,9 +50,10 @@ extension YKHttpClient {
             
         post("/api/service/notaryApply", parameters: parameters, progress: nil, success: { (_, responseObject) in
             if let responseObject = responseObject as? [String : Any] {
-                if let new = responseObject["responseData"] as? NSDictionary {
-//                    let count = new["\("notary_id")"]?.intValue
-//                    completionHandler(count, nil)
+                if let new = responseObject["responseData"] as? [String : Any] {
+                    if let count = new["\("notary_id")"] as? String, let id = Int(count) {
+                        completionHandler(id, nil)
+                    }
                 }
             }
         }) { (_, error) -> Void in
@@ -81,9 +82,10 @@ extension YKHttpClient {
             }
             }, progress: nil, success: { (_, responseObject) in
                 if let responseObject = responseObject as? [String : Any] {
-                    if let new = responseObject["responseData"] as? NSDictionary {
-//                        let count = new["\("notary_id")"]?.intValue
-//                        completionHandler(count, nil)
+                    if let new = responseObject["responseData"] as? [String : Any] {
+                        if let count = new["\("notary_id")"] as? String, let id = Int(count) {
+                            completionHandler(id, nil)
+                        }
                     }
                 }
         }) { (_, error) -> Void in
@@ -129,9 +131,10 @@ extension YKHttpClient {
         }
         post("/api/service/lawAssist", parameters: parameters, progress: nil, success: { (_, responseObject) in
             if let responseObject = responseObject as? [String : Any] {
-                if let new = responseObject["responseData"] as? NSDictionary {
-//                    let count = new["\("assist_id")"]?.intValue
-//                    completionHandler(count, nil)
+                if let new = responseObject["responseData"] as? [String : Any] {
+                    if let count = new["\("assist_id")"] as? String, let id = Int(count) {
+                        completionHandler(id, nil)
+                    }
                 }
             }
         }) { (_, error) -> Void in
@@ -149,9 +152,10 @@ extension YKHttpClient {
                           "userid": YKUser.shared.userid] as [String : Any]
         post("/api/service/lawAssist", parameters: parameters, progress: nil, success: { (_, responseObject) in
             if let responseObject = responseObject as? [String : Any] {
-                if let new = responseObject["responseData"] as? NSDictionary {
-//                    let count = new["\("assist_id")"]?.intValue
-//                    completionHandler(count, nil)
+                if let new = responseObject["responseData"] as? [String : Any] {
+                    if let count = new["\("assist_id")"] as? String, let id = Int(count) {
+                        completionHandler(id, nil)
+                    }
                 }
             }
         }) { (_, error) -> Void in
@@ -169,9 +173,10 @@ extension YKHttpClient {
                           "userid": YKUser.shared.userid] as [String : Any]
         post("/api/service/lawAssist", parameters: parameters, progress: nil, success: { (_, responseObject) in
             if let responseObject = responseObject as? [String : Any] {
-                if let new = responseObject["responseData"] as? NSDictionary {
-//                    let count = new["\("assist_id")"]?.intValue
-//                    completionHandler(count, nil)
+                if let new = responseObject["responseData"] as? [String : Any] {
+                    if let count = new["\("assist_id")"] as? String, let id = Int(count) {
+                        completionHandler(id, nil)
+                    }
                 }
             }
         }) { (_, error) -> Void in
@@ -194,9 +199,10 @@ extension YKHttpClient {
                           "userid": YKUser.shared.userid] as [String : Any]
         post("/api/service/lawAssist", parameters: parameters, progress: nil, success: { (_, responseObject) in
             if let responseObject = responseObject as? [String : Any] {
-                if let new = responseObject["responseData"] as? NSDictionary {
-//                    let count = new["\("assist_id")"].intValue
-//                    completionHandler(count, nil)
+                if let new = responseObject["responseData"] as? [String : Any] {
+                    if let count = new["\("assist_id")"] as? String, let id = Int(count) {
+                        completionHandler(id, nil)
+                    }
                 }
             }
         }) { (_, error) -> Void in

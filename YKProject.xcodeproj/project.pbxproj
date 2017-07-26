@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B6003B0D1F28975000936FEC /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B6003B0C1F28975000936FEC /* MBProgressHUD.m */; };
 		B609E7CA1E10B2F500757950 /* YKNotaryApplyThreeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B609E7C91E10B2F500757950 /* YKNotaryApplyThreeController.swift */; };
 		B609FAE11E20EEE9002163DD /* YKDynamicDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B609FAE01E20EEE9002163DD /* YKDynamicDetailCell.swift */; };
 		B609FAE31E20EEF3002163DD /* YKDynamicDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B609FAE21E20EEF2002163DD /* YKDynamicDetailController.swift */; };
@@ -252,7 +253,6 @@
 		B6E1C1B41DFEA55B00C06BA5 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6E1C1B31DFEA55B00C06BA5 /* JavaScriptCore.framework */; };
 		B6E1C1B61DFEA57600C06BA5 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6E1C1B51DFEA57600C06BA5 /* MediaPlayer.framework */; };
 		B6E1C1B81DFEA59C00C06BA5 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6E1C1B71DFEA59C00C06BA5 /* CoreMotion.framework */; };
-		B6E1C1BC1DFEAF3E00C06BA5 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E1C1BB1DFEAF3E00C06BA5 /* MBProgressHUD.m */; };
 		B6E1C1BE1DFEAF4700C06BA5 /* YKProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E1C1BD1DFEAF4700C06BA5 /* YKProgressHUD.swift */; };
 		B6E1C1E91DFED3B400C06BA5 /* BaiduMapAPI_Base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6E1C1E21DFED3B400C06BA5 /* BaiduMapAPI_Base.framework */; };
 		B6E1C1EA1DFED3B400C06BA5 /* BaiduMapAPI_Cloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6E1C1E31DFED3B400C06BA5 /* BaiduMapAPI_Cloud.framework */; };
@@ -270,6 +270,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B6003B0B1F28975000936FEC /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		B6003B0C1F28975000936FEC /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		B609E7C91E10B2F500757950 /* YKNotaryApplyThreeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YKNotaryApplyThreeController.swift; sourceTree = "<group>"; };
 		B609FAE01E20EEE9002163DD /* YKDynamicDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YKDynamicDetailCell.swift; sourceTree = "<group>"; };
 		B609FAE21E20EEF2002163DD /* YKDynamicDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YKDynamicDetailController.swift; sourceTree = "<group>"; };
@@ -596,8 +598,6 @@
 		B6E1C1B31DFEA55B00C06BA5 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		B6E1C1B51DFEA57600C06BA5 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		B6E1C1B71DFEA59C00C06BA5 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
-		B6E1C1BA1DFEAF3E00C06BA5 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
-		B6E1C1BB1DFEAF3E00C06BA5 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		B6E1C1BD1DFEAF4700C06BA5 /* YKProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YKProgressHUD.swift; sourceTree = "<group>"; };
 		B6E1C1E21DFED3B400C06BA5 /* BaiduMapAPI_Base.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Base.framework; sourceTree = "<group>"; };
 		B6E1C1E31DFED3B400C06BA5 /* BaiduMapAPI_Cloud.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Cloud.framework; sourceTree = "<group>"; };
@@ -1404,8 +1404,8 @@
 		B6E1C1B91DFEAF3E00C06BA5 /* MBProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
-				B6E1C1BA1DFEAF3E00C06BA5 /* MBProgressHUD.h */,
-				B6E1C1BB1DFEAF3E00C06BA5 /* MBProgressHUD.m */,
+				B6003B0B1F28975000936FEC /* MBProgressHUD.h */,
+				B6003B0C1F28975000936FEC /* MBProgressHUD.m */,
 			);
 			path = MBProgressHUD;
 			sourceTree = "<group>";
@@ -1559,7 +1559,6 @@
 				B6B9CB251DC8980600437F05 /* YKMeCellTwo.swift in Sources */,
 				B621C0EA1E00E22F002275CE /* YKSelectedController.swift in Sources */,
 				B609E7CA1E10B2F500757950 /* YKNotaryApplyThreeController.swift in Sources */,
-				B6E1C1BC1DFEAF3E00C06BA5 /* MBProgressHUD.m in Sources */,
 				B644B6AF1D7E67F4000384E0 /* SDWebImageDownloader.m in Sources */,
 				B628F8FB1F2857BF00B1C36F /* ConstraintInsets.swift in Sources */,
 				B628F8F71F2857BF00B1C36F /* ConstraintConfig.swift in Sources */,
@@ -1690,6 +1689,7 @@
 				B6E1C1981DFE9D1A00C06BA5 /* YKMessageController.swift in Sources */,
 				B621C0EE1E00EC87002275CE /* YKLawApplyTwoCell.swift in Sources */,
 				B6E1C1651DFE978500C06BA5 /* YKRunTime.swift in Sources */,
+				B6003B0D1F28975000936FEC /* MBProgressHUD.m in Sources */,
 				B6373FDA1E3058B400022053 /* ZLCollectionCell.m in Sources */,
 				B644B6981D7E67F4000384E0 /* MJRefreshBackNormalFooter.m in Sources */,
 				B6E1C2071DFF985100C06BA5 /* YKProtolController.swift in Sources */,

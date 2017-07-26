@@ -97,7 +97,7 @@ class YKChangeInfoController: YKPhotoTableViewController,YKEditNicknameDelegate 
             
             YKHttpClient.shared.updateUser(YKUser.shared.nickname, avatar: image, completionHandler: { (error) in
                 if error == nil {
-                    YKProgressHUD.popupSuccess("修改成功")
+                    YKProgressHUD.showSuccess("修改成功")
                     cell.iconImage.image = image
                     NotificationCenter.default.post(name: Notification.Name(rawValue: kChangeInfoNotification), object: nil)
                 } else {

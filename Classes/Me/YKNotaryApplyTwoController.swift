@@ -49,9 +49,9 @@ class YKNotaryApplyTwoController: YKPhotoTableViewController,YKSelectedDelegate,
         useTextField.rightViewMode = UITextFieldViewMode.always
         useTextField.addTarget(self, action: #selector(checkTextField), for: UIControlEvents.editingChanged)
         
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
-//        tap.delegate = self
-//        tableView.addGestureRecognizer(tap)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
+        tap.delegate = self
+        tableView.addGestureRecognizer(tap)
         initCollectionView()
     }
     
@@ -70,7 +70,7 @@ class YKNotaryApplyTwoController: YKPhotoTableViewController,YKSelectedDelegate,
             actionSheet.maxSelectCount = 3 - self.arrDataSources.count
             actionSheet.showPhotoLibrary(withSender: self, last: self.lastSelectMoldels) { (selectPhotos, selectPhotoModels) in
                 if self.arrDataSources.count >= 3 {
-                    YKProgressHUD.popupError("最多只能选择3张图片")
+                    YKProgressHUD.showError("最多只能选择3张图片")
                     return
                 }
                 self.arrDataSources.append(contentsOf: selectPhotos)
@@ -83,7 +83,7 @@ class YKNotaryApplyTwoController: YKPhotoTableViewController,YKSelectedDelegate,
         }
         view.addButton(NSLocalizedString("title.PhotoVC.TakingPictures", comment: ""), style: YKButtonStyle.normal, color: YKButtonColor.normal) {
             if self.arrDataSources.count >= 3 {
-                YKProgressHUD.popupError("最多只能选择3张图片")
+                YKProgressHUD.showError("最多只能选择3张图片")
                 return
             }
             self.presentCamera()
@@ -126,21 +126,25 @@ class YKNotaryApplyTwoController: YKPhotoTableViewController,YKSelectedDelegate,
     @IBAction func nextBtnClick(_ sender: UIButton) {
         hideKeyBoard()
         if arrDataSources.count == 0 {
-            YKProgressHUD.popupError("至少上传一张图片")
+            YKProgressHUD.showError("至少上传一张图片")
             return
         }
         var array = cellArray
         array.removeFirst()
         if let with_notary_items = itemTextField.text, let submit_stuff1 = stuffTextField.text, let with_use_place = useTextField.text {
+            YKProgressHUD.showHUD("", inView: self.view)
             YKHttpClient.shared.notaryApplyTwo(self.notary_id, with_notary_items: with_notary_items, submit_stuff1: submit_stuff1, with_use_place: with_use_place, submit_stuff: array, attachment: self.arrDataSources, completionHandler: { (id, error) in
-                if let id = id {
-                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "NotaryApplyThreeID") as! YKNotaryApplyThreeController
-                    vc.title = "公证办理(3)"
-                    vc.notary_id = id
-                    self.navigationController?.pushViewController(vc, animated: true)
-                } else {
-                    self.showAlert(error: error)
-                }
+                DispatchQueue.main.async(execute: {
+                    YKProgressHUD.hide(false)
+                    if let id = id {
+                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "NotaryApplyThreeID") as! YKNotaryApplyThreeController
+                        vc.title = "公证办理(3)"
+                        vc.notary_id = id
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    } else {
+                        self.showAlert(error: error)
+                    }
+                })
             })
         }
     }
@@ -162,6 +166,9 @@ class YKNotaryApplyTwoController: YKPhotoTableViewController,YKSelectedDelegate,
         browseVC.imageArray = arrDataSources
         browseVC.imageIndex = indexPath.item
         browseVC.imageDelete = { (index) in
+            guard let index = index else {
+                return
+            }
             self.arrDataSources.remove(at: hex2dec("\(index)"))
             let newHeight: CGFloat = (kScreenWidth - 30) / 3  * CGFloat(ceilf(Float(self.arrDataSources.count) / 3.0)) + 10
             self.selectHeightConstraint.constant = self.arrDataSources.count != 0 ? 44 + newHeight : 44
@@ -175,7 +182,7 @@ class YKNotaryApplyTwoController: YKPhotoTableViewController,YKSelectedDelegate,
     override func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             if self.arrDataSources.count >= 3 {
-                YKProgressHUD.popupError("最多只能选择3张图片")
+                YKProgressHUD.showError("最多只能选择3张图片")
                 return
             }
             self.arrDataSources.append(image)
