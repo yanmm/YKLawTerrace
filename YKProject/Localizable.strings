@@ -1,0 +1,29 @@
+/* 
+  Localizable.strings
+  QEMShop
+
+  Created by Yuki on 16/8/15.
+  Copyright © 2016年 Yuki. All rights reserved.
+*/
+
+
+/// Alert
+
+"alert.prompt" = "提示";
+"alert.ok" = "确定";
+"alert.cancel" = "取消";
+"alert.next" = "下一步";
+
+"alert.network.error" = "网络错误，请稍后再试";
+"alert.unknown.error" = "未知错误";
+"alert.needToTurnLocationServices" = "需要开启定位服务,请到设置->隐私,打开定位服务";
+
+/// ProgressHUD
+
+"title.hud.loading" = "加载中...";
+
+"title.PhotoVC.SelectOperation" = "选择操作";
+"title.PhotoVC.PhotoAlbum" = "相册";
+"title.PhotoVC.TakingPictures" = "相机";
+"title.PhotoVC.DeviceDoesNotSupport" = "该设备不支持图库和照片库";
+"title.PhotoVC.NoSupportForCamera" = "该设备不支持拍照";
